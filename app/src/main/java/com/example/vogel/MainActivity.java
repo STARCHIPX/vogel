@@ -11,9 +11,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Ersetze das Standardfragment durch das Fragment mit der Karte
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new MapFragment());
-        transaction.commit();
+        // Zeige das LoginFragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new LoginFragment())
+                    .commit();
+        }
+    }
+
+    public void showMapFragment() {
+    // Ersetze das Standardfragment durch das Fragment mit der Karte
+    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    transaction.replace(R.id.fragment_container, new MapFragment());
+    transaction.commit();
     }
 }
