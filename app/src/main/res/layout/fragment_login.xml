@@ -10,6 +10,7 @@
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:hint="Username"
         android:inputType="text" />
 
@@ -17,6 +18,7 @@
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUsername"
         android:hint="Password"
         android:inputType="textPassword" />
 
@@ -24,6 +26,7 @@
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
         android:text="Login" />
 
 </RelativeLayout>
