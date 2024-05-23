@@ -13,8 +13,8 @@
         Den Text mal ein bisschen einkürzen
     </string>
     <string-array name="options_array">
-        <item>Option 1</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
+        <item>Mähen</item>
+        <item>Düngen</item>
+        <item>Wasweißich</item>
     </string-array>
 </resources>
