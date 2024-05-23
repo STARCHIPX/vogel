@@ -19,8 +19,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void showActionFragment() {
+        // Methode zum Wechseln zum ActionFragment nach erfolgreichem Login
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new ActionFragment());
+        transaction.commit();
+    }
     public void showMapFragment() {
-    // Ersetze das Standardfragment durch das Fragment mit der Karte
+    // Ersetze das ActionFragment durch das Fragment mit der Karte
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     transaction.replace(R.id.fragment_container, new MapFragment());
     transaction.commit();
