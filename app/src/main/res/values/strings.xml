@@ -17,4 +17,9 @@
         <item>Düngen</item>
         <item>Wasweißich</item>
     </string-array>
+    <string-array name="time_of_day_array">
+        <item>morgens</item>
+        <item>mittags</item>
+        <item>abends</item>
+    </string-array>
 </resources>
