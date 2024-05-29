@@ -50,7 +50,7 @@ public class LoginFragment extends Fragment {
 
     private boolean validateLogin(String username, String password) {
         // Dummy-Validierung - ersetze dies durch echte Validierung
-        return "user".equals(username) && "pass".equals(password);
+        return "admin".equals(username) && "admin".equals(password);
     }
 
     @Override
