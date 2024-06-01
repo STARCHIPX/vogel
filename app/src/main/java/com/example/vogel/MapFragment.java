@@ -27,8 +27,12 @@ public class MapFragment extends Fragment {
         mapView.setMultiTouchControls(true); // Aktiviere Multi-Touch-Steuerung
 
         // Zentriere die Karte auf eine bestimmte Position (z.B. Berlin)
-        mapView.getController().setZoom(10); // Setze den Zoom-Level
-        mapView.getController().setCenter(new GeoPoint(52.52, 13.405)); // Setze die Geo-Koordinaten
+        mapView.getController().setZoom(16); // Setze den Zoom-Level
+        //mapView.getController().setCenter(new GeoPoint(52.52, 13.405)); // Korrdinaten
+        mapView.getController().setCenter(new GeoPoint(51.03378, 13.73480)); // Korrdinaten
+
+        //N 51° 2,0267'
+        // O 13° 44,0884'
 
         return mapView;
     }
