@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selected Option: "
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"/>
 
     <TextView
         android:id="@+id/selectedTimeOfDayTextView"
@@ -19,14 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedOptionTextView"
         android:layout_marginTop="20dp"
-        android:text="Selected Time of Day: " />
+        android:text="Selected Time of Day: "/>
 
     <Button
-        android:id="@+id/buttonSend"
+        android:id="@+id/buttonSaveToDatabase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedTimeOfDayTextView"
         android:layout_marginTop="50dp"
-        android:text="Send" />
+        android:text="Save" />
 
 </RelativeLayout>
