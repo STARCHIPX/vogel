@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment;
 
 
 public class ActionFragment extends Fragment {
-    private Spinner spinnerOptions;
-    private Spinner spinnerTimeOfDay;
+    public Spinner spinnerOptions;
+    public Spinner spinnerTimeOfDay;
     private Button buttonConfirm;
 
     @Override
@@ -51,18 +51,29 @@ public class ActionFragment extends Fragment {
                 String selectedOption = spinnerOptions.getSelectedItem().toString();
                 String selectedTimeOfDay = spinnerTimeOfDay.getSelectedItem().toString();
                 if (!selectedOption.isEmpty() && !selectedTimeOfDay.isEmpty()) {
+                    //neue Version
+                    // Bundle erstellen, um die ausgewählten Werte zu übergeben
+                    Bundle bundle = new Bundle();
+                    bundle.putString("selectedOption", selectedOption);
+                    bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
+
+                    // SummaryFragment erstellen und Bundle setzen
+                    SummaryFragment summaryFragment = new SummaryFragment();
+                    summaryFragment.setArguments(bundle);
+
+                    // Fragment wechseln
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, summaryFragment) // R.id.fragment_container ist das ID des Containers für das Fragment
+                            .addToBackStack(null)
+                            .commit();
+                    //alte Version
                     // Wechsle zum MapFragment
-                    ((MainActivity) getActivity()).showMapFragment();
-                } else {
-                    Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
+                   // ((MainActivity) getActivity()).showMapFragment();
+                //} else {
+                //    Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    private boolean validateLogin(String username, String password) {
-        // Dummy-Validierung - ersetze dies durch echte Validierung
-        return "user".equals(username) && "pass".equals(password);
     }
 
     @Override
