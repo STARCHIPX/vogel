@@ -12,6 +12,7 @@
 
         Den Text mal ein bisschen einkürzen
     </string>
+    <string name="zur_ck">Zurück</string>
     <string-array name="options_array">
         <item>Mähen</item>
         <item>Düngen</item>
