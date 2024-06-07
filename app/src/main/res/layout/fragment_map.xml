@@ -6,6 +6,27 @@
     tools:context=".MapFragment"
     android:padding="16dp">
 
+    <!-- so sollte es aussehen
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/..?.."
+        android:layout_marginTop="50dp"
+        android:text="Zurück" />
+
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/..?.."
+        android:text="Bestätigen"
+        android:layout_toEndOf="@id/buttonConfirm"
+        android:layout_marginStart="70dp"/>
+    -->
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
