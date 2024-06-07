@@ -24,6 +24,13 @@
         android:inputType="textPassword"
         android:layout_marginTop="20dp"/>
 
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginTop="50dp"
+        android:text="Zurück" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -31,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_below="@id/editTextPassword"
-        android:text="Login" />
+        android:text="Login"
+        android:layout_toEndOf="@id/buttonBack"
+        android:layout_marginStart="70dp"/>
 
 </RelativeLayout>
