@@ -36,7 +36,11 @@ public class OverviewFragment extends Fragment {
         while (cursor.moveToNext()) {
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
-            values.append("Option: ").append(option).append(", Time of Day: ").append(timeOfDay).append("\n");
+            String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
+            values.append("Option: ").append(option)
+                    .append(", Time of Day: ").append(timeOfDay)
+                    .append(", Timestamp: ").append(timestamp)
+                    .append("\n");
         }
         cursor.close();
 
