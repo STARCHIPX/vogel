@@ -20,7 +20,7 @@ public class SummaryFragment extends Fragment {
     private TextView selectedOptionTextView;
     private TextView selectedTimeOfDayTextView;
     private Button saveToDatabaseButton;
-
+    private Button buttonBack;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,6 +34,7 @@ public class SummaryFragment extends Fragment {
         selectedOptionTextView = view.findViewById(R.id.selectedOptionTextView);
         selectedTimeOfDayTextView = view.findViewById(R.id.selectedTimeOfDayTextView);
         saveToDatabaseButton = view.findViewById(R.id.buttonSaveToDatabase);
+        buttonBack = view.findViewById(R.id.buttonBack);
 
         // Empfange die übergebenen Argumente
         Bundle args = getArguments();
@@ -50,6 +51,15 @@ public class SummaryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 saveToDatabase();
+            }
+        });
+
+        // Funktionalität für den Zurück-Button
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //getParentFragmentManager().popBackStack();
+                requireActivity().onBackPressed();
             }
         });
     }
