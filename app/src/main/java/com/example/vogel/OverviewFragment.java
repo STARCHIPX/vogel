@@ -40,18 +40,6 @@ public class OverviewFragment extends Fragment {
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
 
-        /*    // Erstelle eine neue TextView für jeden Eintrag
-            TextView entryTextView = new TextView(getContext());
-            entryTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            entryTextView.setText("Option: " + option + ", Time of Day: " + timeOfDay + ", Timestamp: " + timestamp);
-
-            // Füge die TextView zum LinearLayout hinzu
-            databaseValuesLayout.addView(entryTextView);
-        }
-        cursor.close();
-         */
             // Erstelle eine CardView für jeden Eintrag
             CardView entryCardView = new CardView(getContext());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
