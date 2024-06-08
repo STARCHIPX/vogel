@@ -23,12 +23,26 @@ public class MainActivity extends AppCompatActivity {
         // Methode zum Wechseln zum ActionFragment nach erfolgreichem Login
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new ActionFragment());
+        transaction.addToBackStack(null);
         transaction.commit();
     }
     public void showMapFragment() {
     // Ersetze das ActionFragment durch das Fragment mit der Karte
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     transaction.replace(R.id.fragment_container, new MapFragment());
+    transaction.addToBackStack(null);
     transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Überprüfe, ob der Backstack nicht leer ist
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            // Wenn ja, entferne das oberste Fragment im Backstack
+            getSupportFragmentManager().popBackStack();
+        } else {
+            // Wenn der Backstack leer ist, verhalte dich wie üblich
+            super.onBackPressed();
+        }
     }
 }

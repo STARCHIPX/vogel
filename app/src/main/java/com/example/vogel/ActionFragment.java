@@ -18,6 +18,7 @@ public class ActionFragment extends Fragment {
     public Spinner spinnerOptions;
     public Spinner spinnerTimeOfDay;
     private Button buttonConfirm;
+    private Button buttonBack;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,6 +33,7 @@ public class ActionFragment extends Fragment {
         spinnerOptions = view.findViewById(R.id.spinnerOptions);
         spinnerTimeOfDay = view.findViewById(R.id.spinnerTimeOfDay);
         buttonConfirm = view.findViewById(R.id.buttonConfirm);
+        buttonBack = view.findViewById(R.id.buttonBack);
 
         // Spinner Aktivitäten hinzufügen
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -69,9 +71,17 @@ public class ActionFragment extends Fragment {
                     //alte Version
                     // Wechsle zum MapFragment
                    // ((MainActivity) getActivity()).showMapFragment();
-                //} else {
-                //    Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        // Funktionalität für den Zurück-Button
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //getParentFragmentManager().popBackStack();
+                requireActivity().onBackPressed();
             }
         });
     }
