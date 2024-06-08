@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.database.Cursor;
@@ -26,25 +27,28 @@ public class OverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        databaseValuesTextView = view.findViewById(R.id.databaseValuesTextView);
+        //databaseValuesTextView = view.findViewById(R.id.databaseValuesTextView);
+        LinearLayout databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
         // Datenbankzugriff und Werte abrufen
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         Cursor cursor = dbHelper.getSelections();
 
-        StringBuilder values = new StringBuilder();
         while (cursor.moveToNext()) {
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
-            values.append("Option: ").append(option)
-                    .append(", Time of Day: ").append(timeOfDay)
-                    .append(", Timestamp: ").append(timestamp)
-                    .append("\n");
+
+            // Erstelle eine neue TextView für jeden Eintrag
+            TextView entryTextView = new TextView(getContext());
+            entryTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            entryTextView.setText("Option: " + option + ", Time of Day: " + timeOfDay + ", Timestamp: " + timestamp);
+
+            // Füge die TextView zum LinearLayout hinzu
+            databaseValuesLayout.addView(entryTextView);
         }
         cursor.close();
-
-        // Anzeigen der Werte
-        databaseValuesTextView.setText(values.toString());
     }
 }
