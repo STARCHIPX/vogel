@@ -6,12 +6,11 @@
     tools:context=".MapFragment"
     android:padding="16dp">
 
-    <!-- so sollte es aussehen
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/..?.."
+        android:layout_below="@id/mapView"
         android:layout_marginTop="50dp"
         android:text="Zurück" />
 
@@ -21,27 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/..?.."
+        android:layout_below="@id/mapView"
         android:text="Bestätigen"
-        android:layout_toEndOf="@id/buttonConfirm"
+        android:layout_toEndOf="@id/buttonBack"
         android:layout_marginStart="70dp"/>
-    -->
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zur_ck"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
 
     <org.osmdroid.views.MapView
         android:id="@+id/mapView"
         android:layout_width="wrap_content"
-        android:layout_height="640dp"
-        android:layout_below="@id/backButton"
-        android:layout_marginTop="12dp" />
+        android:layout_height="600dp"
+        android:layout_alignParentTop="true"/>
 
 </RelativeLayout>
