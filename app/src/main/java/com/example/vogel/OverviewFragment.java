@@ -31,6 +31,15 @@ public class OverviewFragment extends Fragment {
 
         LinearLayout databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
+        // Finden Sie den Button und setzen Sie den OnClickListener
+        Button navigateToMapButton = view.findViewById(R.id.ButtonNext);
+        navigateToMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) requireActivity()).showMapFragment();
+            }
+        });
+
         // Datenbankzugriff und Werte abrufen
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         Cursor cursor = dbHelper.getSelections();
