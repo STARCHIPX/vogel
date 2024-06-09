@@ -1,9 +1,12 @@
 package com.example.vogel;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,15 +20,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapFragment extends Fragment {
-
+    private Button buttonBack;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
         //osmdroid
-        Configuration.getInstance().load(getContext(), getContext().getSharedPreferences("osmdroid", 0));
+        Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));
+
+        // Initialisiere den Zurück-Button
+        buttonBack = view.findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code für das Zurückkehren zum vorherigen Fragment oder zur vorherigen Aktivität
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
 
         //MapView
-        MapView mapView = new MapView(getContext());
+        MapView mapView = view.findViewById(R.id.mapView);
         mapView.setTileSource(TileSourceFactory.MAPNIK); // Wähle die Kartenquelle aus
         mapView.setBuiltInZoomControls(true); // Aktiviere Zoom-Steuerung
         mapView.setMultiTouchControls(true); // Aktiviere Multi-Touch-Steuerung
@@ -35,7 +49,6 @@ public class MapFragment extends Fragment {
         mapView.getController().setCenter(new GeoPoint(51.03378, 13.73480)); // Korrdinaten
 
         // Flächen der Bauern
-
         //HTW-Dresden Z-Gebäude
         List<GeoPoint> geoPoints1 = new ArrayList<>();
         geoPoints1.add(new GeoPoint(51.03804765119182, 13.735075452040629));
@@ -54,9 +67,8 @@ public class MapFragment extends Fragment {
         geoPoints2.add(new GeoPoint(51.03622389212699, 13.73572979297978));
         geoPoints2.add(new GeoPoint(51.036314673253806, 13.735354065357605));
         geoPoints2.add(new GeoPoint(51.03682906309988, 13.735598988110166));
-
-
         addPolygonToMap(mapView, geoPoints2);
+
         //Fläche 3
         List<GeoPoint> geoPoints3 = new ArrayList<>();
         geoPoints3.add(new GeoPoint(51.03890004563389, 13.733483557335532));
@@ -65,7 +77,7 @@ public class MapFragment extends Fragment {
         geoPoints3.add(new GeoPoint(51.03750750635421, 13.732826044674177));
         addPolygonToMap(mapView, geoPoints3);
 
-        return mapView;
+        return view;
     }
 
     private void addPolygonToMap(MapView mapView, List<GeoPoint> geoPoints) {
