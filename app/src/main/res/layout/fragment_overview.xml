@@ -9,7 +9,7 @@
         android:id="@+id/databaseValuesHeaderTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Übersicht aller Buchungen"
+        android:text="Übersicht aller Aktivitäten"
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingBottom="8dp"/>
