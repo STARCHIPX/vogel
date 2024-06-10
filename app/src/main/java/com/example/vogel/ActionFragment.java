@@ -60,12 +60,13 @@ public class ActionFragment extends Fragment {
                     bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
 
                     // SummaryFragment erstellen und Bundle setzen
-                    SummaryFragment summaryFragment = new SummaryFragment();
-                    summaryFragment.setArguments(bundle);
-
+                    // DG SummaryFragment summaryFragment = new SummaryFragment();
+                  //DG  summaryFragment.setArguments(bundle);
+                    MapFragment mapFragment = new MapFragment();
+                    mapFragment.setArguments(bundle);
                     // Fragment wechseln
                     getParentFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, summaryFragment) // R.id.fragment_container ist das ID des Containers für das Fragment
+                            .replace(R.id.fragment_container, mapFragment) // R.id.fragment_container ist das ID des Containers für das Fragment
                             .addToBackStack(null)
                             .commit();
                     //alte Version

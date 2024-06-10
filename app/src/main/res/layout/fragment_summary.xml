@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,36 +6,28 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/selectedTimeOfDayTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewSummary"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Selected Time of Day: "
-        android:layout_centerVertical="true"/>
-
-    <TextView
-        android:id="@+id/selectedOptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/selectedTimeOfDayTextView"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
-        android:text="Selected Option: "/>
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectedOptionTextView"
+        android:layout_below="@id/textViewSummary"
         android:layout_marginTop="50dp"
         android:text="Zurück" />
 
     <Button
-        android:id="@+id/buttonSaveToDatabase"
-        android:layout_width="match_parent"
+        android:id="@+id/buttonConfirm"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectedOptionTextView"
+        android:layout_below="@id/textViewSummary"
         android:layout_marginTop="50dp"
-        android:text="Speichern"
         android:layout_toEndOf="@id/buttonBack"
-        android:layout_marginStart="70dp"/>
-
+        android:layout_marginStart="70dp"
+        android:text="Bestätigen" />
 </RelativeLayout>

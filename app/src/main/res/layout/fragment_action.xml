@@ -3,19 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment"
+    tools:context=".ActionFragment"
     android:padding="16dp">
 
     <Spinner
         android:id="@+id/spinnerTimeOfDay"
-        android:layout_width="373dp"
-        android:layout_height="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true" />
 
     <Spinner
         android:id="@+id/spinnerOptions"
-        android:layout_width="373dp"
-        android:layout_height="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/spinnerTimeOfDay"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp" />

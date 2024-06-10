@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showActionFragment() {
+    public void showOverviewFragment() {
         // Methode zum Wechseln zum ActionFragment nach erfolgreichem Login
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new ActionFragment());
+        transaction.replace(R.id.fragment_container, new OverviewFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
