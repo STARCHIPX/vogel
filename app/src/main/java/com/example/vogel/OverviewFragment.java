@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.database.Cursor;
 
@@ -18,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 public class OverviewFragment extends Fragment {
 
-    private TextView databaseValuesTextView;
+    private LinearLayout databaseValuesLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,7 +27,7 @@ public class OverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LinearLayout databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
+        databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
         // Finden Sie den Button und setzen Sie den OnClickListener
         Button navigateToActionButton = view.findViewById(R.id.ButtonNext);
@@ -47,6 +45,12 @@ public class OverviewFragment extends Fragment {
         // Datenbankzugriff und Werte abrufen
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         Cursor cursor = dbHelper.getSelections();
+
+        // Entfernen Sie den Platzhaltertext, sobald echte Daten hinzugefügt werden
+        if (cursor.getCount() > 0) {
+            TextView placeholderTextView = view.findViewById(R.id.placeholderTextView);
+            placeholderTextView.setVisibility(View.GONE);
+        }
 
         while (cursor.moveToNext()) {
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));

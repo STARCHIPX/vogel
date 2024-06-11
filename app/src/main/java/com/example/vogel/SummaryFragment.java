@@ -11,7 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import org.osmdroid.util.GeoPoint;
+
 import java.util.ArrayList;
 
 public class SummaryFragment extends Fragment {
@@ -37,11 +39,13 @@ public class SummaryFragment extends Fragment {
         if (bundle != null) {
             String selectedOption = bundle.getString("selectedOption");
             String selectedTimeOfDay = bundle.getString("selectedTimeOfDay");
+            String selectedAreaName = bundle.getString("selectedAreaName"); // Der Name der ausgewählten Fläche
             ArrayList<GeoPoint> selectedArea = bundle.getParcelableArrayList("selectedArea");
 
             StringBuilder summary = new StringBuilder();
             summary.append("Selected Option: ").append(selectedOption).append("\n");
             summary.append("Selected Time of Day: ").append(selectedTimeOfDay).append("\n");
+            summary.append("Selected Area Name: ").append(selectedAreaName).append("\n");
             summary.append("Selected Area: ").append("\n");
             for (GeoPoint point : selectedArea) {
                 summary.append(point.getLatitude()).append(", ").append(point.getLongitude()).append("\n");
@@ -53,15 +57,26 @@ public class SummaryFragment extends Fragment {
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Save the selected options and area to a database or send to server
-                Toast.makeText(getContext(), "Saved successfully!", Toast.LENGTH_SHORT).show();
-              //  requireActivity().onBackPressed();
-                // Navigieren zum OverviewFragment
-                OverviewFragment overviewFragment = new OverviewFragment();
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, overviewFragment)
-                        .addToBackStack(null)
-                        .commit();
+                if (bundle != null) {
+                    String selectedOption = bundle.getString("selectedOption");
+                    String selectedTimeOfDay = bundle.getString("selectedTimeOfDay");
+                    String selectedAreaName = bundle.getString("selectedAreaName");
+
+                    DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+                    boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay, selectedAreaName);
+
+                    if (isInserted) {
+                        Toast.makeText(getContext(), "Saved successfully!", Toast.LENGTH_SHORT).show();
+                        // Navigieren zum OverviewFragment
+                        OverviewFragment overviewFragment = new OverviewFragment();
+                        getParentFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, overviewFragment)
+                                .addToBackStack(null)
+                                .commit();
+                    } else {
+                        Toast.makeText(getContext(), "Save failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 

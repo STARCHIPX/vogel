@@ -1,33 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<!-- res/layout/fragment_summary.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SummaryFragment"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/textViewSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:textSize="16sp" />
-
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewSummary"
-        android:layout_marginTop="50dp"
-        android:text="Zurück" />
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonConfirm"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewSummary"
-        android:layout_marginTop="50dp"
-        android:layout_toEndOf="@id/buttonBack"
-        android:layout_marginStart="70dp"
-        android:text="Bestätigen" />
-</RelativeLayout>
+        android:text="weiter" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zur_ck"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

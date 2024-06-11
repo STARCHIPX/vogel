@@ -13,6 +13,10 @@
         Den Text mal ein bisschen einkürzen
     </string>
     <string name="zur_ck">Zurück</string>
+    <string name="aktivit_ten">Aktivitäten</string>
+    <string name="neuaktivitaet">NeuAktivitaet</string>
+    <string name="ok">OK</string>
+    <string name="NEU" />
     <string-array name="options_array">
         <item>Mähen</item>
         <item>Düngen</item>

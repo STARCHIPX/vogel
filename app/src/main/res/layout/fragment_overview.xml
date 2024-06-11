@@ -1,25 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/fragment_overview.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
-
-    <TextView
-        android:id="@+id/databaseValuesHeaderTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Übersicht aller Aktivitäten"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingBottom="8dp"/>
-
-    <Button
-        android:id="@+id/ButtonNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Neue Aktivität"
-        android:layout_marginBottom="16dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,8 +16,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Hier werden die Einträge dynamisch hinzugefügt -->
-
+            <TextView
+                android:id="@+id/placeholderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading data..."
+                android:contentDescription="Loading data"
+                android:visibility="visible" /> <!-- Standardmäßig sichtbar -->
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/ButtonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NEU"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
