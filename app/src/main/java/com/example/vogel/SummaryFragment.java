@@ -13,14 +13,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import org.osmdroid.util.GeoPoint;
+import java.util.ArrayList;
 
 
 public class SummaryFragment extends Fragment {
 
     private TextView selectedOptionTextView;
     private TextView selectedTimeOfDayTextView;
+    private TextView selectedPolygonsTextView;
     private Button saveToDatabaseButton;
     private Button buttonBack;
+
+    private String polygonsString;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -33,6 +38,7 @@ public class SummaryFragment extends Fragment {
 
         selectedOptionTextView = view.findViewById(R.id.selectedOptionTextView);
         selectedTimeOfDayTextView = view.findViewById(R.id.selectedTimeOfDayTextView);
+        selectedPolygonsTextView = view.findViewById(R.id.selectedPolygonsTextView);
         saveToDatabaseButton = view.findViewById(R.id.buttonSaveToDatabase);
         buttonBack = view.findViewById(R.id.buttonBack);
 
@@ -41,9 +47,23 @@ public class SummaryFragment extends Fragment {
         if (args != null) {
             String selectedOption = args.getString("selectedOption");
             String selectedTimeOfDay = args.getString("selectedTimeOfDay");
+            //polygonsString = args.getString("polygons");
+            ArrayList<GeoPoint> selectedArea = args.getParcelableArrayList("selectedArea");
 
             selectedOptionTextView.setText("Selected Option: " + selectedOption);
             selectedTimeOfDayTextView.setText("Selected Time of Day: " + selectedTimeOfDay);
+
+            // Build the polygons string
+            StringBuilder polygonsStringBuilder = new StringBuilder();
+            if (selectedArea != null) {
+                for (GeoPoint point : selectedArea) {
+                    polygonsStringBuilder.append(point.getLatitude())
+                            .append(", ")
+                            .append(point.getLongitude())
+                            .append("\n");
+                }
+            }
+            selectedPolygonsTextView.setText(polygonsStringBuilder.toString());
         }
 
         // OnClickListener für den Button setzen
@@ -69,8 +89,9 @@ public class SummaryFragment extends Fragment {
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         String selectedOption = selectedOptionTextView.getText().toString();
         String selectedTimeOfDay = selectedTimeOfDayTextView.getText().toString();
+        String polygonsString = selectedPolygonsTextView.getText().toString();
 
-        boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay);
+        boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay, polygonsString);
         if (isInserted) {
             Toast.makeText(getContext(), "Selection saved to database", Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getParentFragmentManager();

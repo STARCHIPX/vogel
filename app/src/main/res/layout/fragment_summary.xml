@@ -21,11 +21,19 @@
         android:layout_marginTop="20dp"
         android:text="Selected Option: "/>
 
+    <TextView
+        android:id="@+id/selectedPolygonsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectedOptionTextView"
+        android:text="Polygons: "
+        android:layout_marginTop="20dp"/>
+
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectedOptionTextView"
+        android:layout_below="@id/selectedPolygonsTextView"
         android:layout_marginTop="50dp"
         android:text="Zurück" />
 
@@ -33,7 +41,7 @@
         android:id="@+id/buttonSaveToDatabase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectedOptionTextView"
+        android:layout_below="@id/selectedPolygonsTextView"
         android:layout_marginTop="50dp"
         android:text="Speichern"
         android:layout_toEndOf="@id/buttonBack"

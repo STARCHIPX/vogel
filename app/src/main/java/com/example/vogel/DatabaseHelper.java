@@ -17,6 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_OPTION = "option";
     private static final String COLUMN_TIME_OF_DAY = "time_of_day";
+    private static final String COLUMN_POLYGONS = "polygons";
     private static final String COLUMN_TIMESTAMP = "timestamp";
 
         public DatabaseHelper(Context context) {
@@ -29,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_OPTION + " TEXT, " +
                     COLUMN_TIME_OF_DAY + " TEXT, " +
+                    COLUMN_POLYGONS + " TEXT, " +
                     COLUMN_TIMESTAMP + " TEXT)";
             db.execSQL(createTable);
         }
@@ -39,11 +41,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             onCreate(db);
         }
 
-        public boolean insertSelection(String option, String timeOfDay) {
+        public boolean insertSelection(String option, String timeOfDay, String polygons) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(COLUMN_OPTION, option);
             contentValues.put(COLUMN_TIME_OF_DAY, timeOfDay);
+            contentValues.put(COLUMN_POLYGONS, polygons);
 
             String currentDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
             contentValues.put(COLUMN_TIMESTAMP, currentDateAndTime);

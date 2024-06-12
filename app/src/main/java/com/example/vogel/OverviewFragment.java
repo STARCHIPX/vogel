@@ -18,7 +18,8 @@ import androidx.fragment.app.Fragment;
 
 public class OverviewFragment extends Fragment {
 
-    private TextView databaseValuesTextView;
+    //private TextView databaseValuesTextView;
+    private LinearLayout databaseValuesLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,7 +30,8 @@ public class OverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LinearLayout databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
+        //LinearLayout databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
+        databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
         // Finden Sie den Button und setzen Sie den OnClickListener
         Button navigateToMapButton = view.findViewById(R.id.ButtonNext);
@@ -47,6 +49,7 @@ public class OverviewFragment extends Fragment {
         while (cursor.moveToNext()) {
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
+            String polygons = cursor.getString(cursor.getColumnIndexOrThrow("polygons"));
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
 
             // Erstelle eine CardView für jeden Eintrag
@@ -88,6 +91,13 @@ public class OverviewFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             timeOfDayTextView.setText(timeOfDay);
             innerLayout.addView(timeOfDayTextView);
+
+            TextView polygonsTextView = new TextView(getContext());
+            polygonsTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            polygonsTextView.setText("Polygons: " + polygons);
+            innerLayout.addView(polygonsTextView);
 
             entryCardView.addView(innerLayout);
             databaseValuesLayout.addView(entryCardView);
