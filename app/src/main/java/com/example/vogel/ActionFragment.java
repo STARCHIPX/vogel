@@ -63,14 +63,8 @@ public class ActionFragment extends Fragment {
                     SummaryFragment summaryFragment = new SummaryFragment();
                     summaryFragment.setArguments(bundle);
 
-                    // Fragment wechseln
-                    getParentFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, summaryFragment) // R.id.fragment_container ist das ID des Containers für das Fragment
-                            .addToBackStack(null)
-                            .commit();
-                    //alte Version
                     // Wechsle zum MapFragment
-                   // ((MainActivity) getActivity()).showMapFragment();
+                   ((MainActivity) getActivity()).showMapFragment();
                 } else {
                     Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
