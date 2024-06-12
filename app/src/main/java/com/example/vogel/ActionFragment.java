@@ -60,8 +60,8 @@ public class ActionFragment extends Fragment {
                     bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
 
                     // SummaryFragment erstellen und Bundle setzen
-                    SummaryFragment summaryFragment = new SummaryFragment();
-                    summaryFragment.setArguments(bundle);
+                    MapFragment mapFragment = new MapFragment();
+                    mapFragment.setArguments(bundle);
 
                     // Wechsle zum MapFragment
                    ((MainActivity) getActivity()).showMapFragment();
