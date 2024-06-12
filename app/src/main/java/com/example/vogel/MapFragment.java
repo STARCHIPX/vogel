@@ -30,6 +30,7 @@ public class MapFragment extends Fragment {
     private List<GeoPoint> selectedArea;
     private Polygon currentPolygon;
     private Polygon selectedPolygon;
+    private Bundle receivedBundle;
 
     @Nullable
     @Override
@@ -61,11 +62,17 @@ public class MapFragment extends Fragment {
                     selectedArea = selectedPolygon.getPoints();
                 }
 
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("selectedArea", (ArrayList<GeoPoint>) selectedArea);
+               // Bundle bundle = new Bundle();
+                //bundle.putParcelableArrayList("selectedArea", (ArrayList<GeoPoint>) selectedArea);
+
+                // Ergänze das Bundle um die selectedArea
+                if (receivedBundle == null) {
+                    receivedBundle = new Bundle();
+                }
+                receivedBundle.putParcelableArrayList("selectedArea", (ArrayList<GeoPoint>) selectedArea);
 
                 SummaryFragment summaryFragment = new SummaryFragment();
-                summaryFragment.setArguments(bundle);
+                summaryFragment.setArguments(receivedBundle);
 
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, summaryFragment)
