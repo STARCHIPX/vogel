@@ -21,6 +21,9 @@ import java.util.List;
 
 public class MapFragment extends Fragment {
     private Button buttonBack;
+    private Button buttonConfirm;
+    private List<List<GeoPoint>> allPolygons = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,6 +38,26 @@ public class MapFragment extends Fragment {
             public void onClick(View v) {
                 // Code für das Zurückkehren zum vorherigen Fragment oder zur vorherigen Aktivität
                 requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
+        buttonConfirm = view.findViewById(R.id.buttonConfirm);
+        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Konvertiere die Polygone zu einem String
+                String polygonsString = convertPolygonsToString(allPolygons);
+
+                // Erstelle ein Bundle und füge den String hinzu
+                Bundle bundle = new Bundle();
+                bundle.putString("polygons", polygonsString);
+
+                // Erstelle das SummaryFragment und setze die Argumente
+                SummaryFragment summaryFragment = new SummaryFragment();
+                summaryFragment.setArguments(bundle);
+
+                // Wechsle zum SummaryFragment
+                ((MainActivity) getActivity()).showSummaryFragment();
             }
         });
 
@@ -56,6 +79,7 @@ public class MapFragment extends Fragment {
         geoPoints1.add(new GeoPoint(51.036968973960306, 13.735275656306914));
         geoPoints1.add(new GeoPoint(51.03708834619956, 13.734609390438077));
         addPolygonToMap(mapView, geoPoints1);
+        allPolygons.add(geoPoints1);
 
         //HTW-Dresden S-Gebäude
         List<GeoPoint> geoPoints2 = new ArrayList<>();
@@ -68,6 +92,7 @@ public class MapFragment extends Fragment {
         geoPoints2.add(new GeoPoint(51.036314673253806, 13.735354065357605));
         geoPoints2.add(new GeoPoint(51.03682906309988, 13.735598988110166));
         addPolygonToMap(mapView, geoPoints2);
+        allPolygons.add(geoPoints2);
 
         //Fläche 3
         List<GeoPoint> geoPoints3 = new ArrayList<>();
@@ -76,6 +101,7 @@ public class MapFragment extends Fragment {
         geoPoints3.add(new GeoPoint(51.037246828495846, 13.734472439492894));
         geoPoints3.add(new GeoPoint(51.03750750635421, 13.732826044674177));
         addPolygonToMap(mapView, geoPoints3);
+        allPolygons.add(geoPoints3);
 
         return view;
     }
@@ -87,5 +113,16 @@ public class MapFragment extends Fragment {
         polygon.setStrokeColor(0xFF0000FF); // Randfarbe
         polygon.setStrokeWidth(5); // Randdicke
         mapView.getOverlayManager().add(polygon);
+    }
+
+    private String convertPolygonsToString(List<List<GeoPoint>> allPolygons) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (List<GeoPoint> polygon : allPolygons) {
+            for (GeoPoint point : polygon) {
+                stringBuilder.append(point.getLatitude()).append(",").append(point.getLongitude()).append(";");
+            }
+            stringBuilder.append("|");
+        }
+        return stringBuilder.toString();
     }
 }

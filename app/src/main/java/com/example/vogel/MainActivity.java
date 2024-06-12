@@ -27,11 +27,18 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
     public void showMapFragment() {
-    // Ersetze das ActionFragment durch das Fragment mit der Karte
-    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-    transaction.replace(R.id.fragment_container, new MapFragment());
-    transaction.addToBackStack(null);
-    transaction.commit();
+        // Ersetze das ActionFragment durch das Fragment mit der Karte
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new MapFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    public void showSummaryFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new SummaryFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 
     @Override
