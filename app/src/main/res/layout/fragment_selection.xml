@@ -27,5 +27,4 @@
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
         android:text="Aktion löschen" />
-
 </LinearLayout>
