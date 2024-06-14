@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
     public void showMapFragment() {
-        // Ersetze das ActionFragment durch das Fragment mit der Karte
+        // Ersetze durch das Fragment mit der Karte
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new MapFragment());
         transaction.addToBackStack(null);
@@ -39,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
 
+    }
+
+    public void showSelectionFragment() {
+        // Ersetze durch das Fragment mit der Selection
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new SelectionFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override
