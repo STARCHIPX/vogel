@@ -30,7 +30,6 @@ public class OverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //LinearLayout databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
         databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
         // Finden Sie den Button und setzen Sie den OnClickListener
@@ -48,6 +47,7 @@ public class OverviewFragment extends Fragment {
 
         while (cursor.moveToNext()) {
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
             String polygons = cursor.getString(cursor.getColumnIndexOrThrow("polygons"));
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
@@ -70,6 +70,13 @@ public class OverviewFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             innerLayout.setOrientation(LinearLayout.VERTICAL);
             innerLayout.setPadding(16, 16, 16, 16);
+
+            TextView dateTextView = new TextView(getContext());
+            dateTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            dateTextView.setText(date);
+            innerLayout.addView(dateTextView);
 
             TextView timestampTextView = new TextView(getContext());
             timestampTextView.setLayoutParams(new LinearLayout.LayoutParams(
