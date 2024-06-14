@@ -47,7 +47,6 @@ public class SummaryFragment extends Fragment {
         if (args != null) {
             String selectedOption = args.getString("selectedOption");
             String selectedTimeOfDay = args.getString("selectedTimeOfDay");
-            //polygonsString = args.getString("polygons");
             ArrayList<GeoPoint> selectedArea = args.getParcelableArrayList("selectedArea");
 
             selectedOptionTextView.setText("Selected Option: " + selectedOption);
