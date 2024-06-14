@@ -6,11 +6,20 @@
     tools:context=".LoginFragment"
     android:padding="16dp">
 
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="true"
+        android:spinnersShown="false"
+        android:layout_centerHorizontal="true"/>
+
     <Spinner
         android:id="@+id/spinnerTimeOfDay"
         android:layout_width="373dp"
         android:layout_height="37dp"
-        android:layout_centerVertical="true" />
+        android:layout_below="@id/datePicker"
+        android:layout_marginTop="20dp" />
 
     <Spinner
         android:id="@+id/spinnerOptions"

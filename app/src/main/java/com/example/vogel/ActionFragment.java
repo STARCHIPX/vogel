@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import android.widget.DatePicker;
 
 
 public class ActionFragment extends Fragment {
@@ -19,6 +20,7 @@ public class ActionFragment extends Fragment {
     public Spinner spinnerTimeOfDay;
     private Button buttonConfirm;
     private Button buttonBack;
+    private DatePicker datePicker;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,6 +34,7 @@ public class ActionFragment extends Fragment {
         // Initialisierung der Views
         spinnerOptions = view.findViewById(R.id.spinnerOptions);
         spinnerTimeOfDay = view.findViewById(R.id.spinnerTimeOfDay);
+        datePicker = view.findViewById(R.id.datePicker);
         buttonConfirm = view.findViewById(R.id.buttonConfirm);
         buttonBack = view.findViewById(R.id.buttonBack);
 
@@ -52,11 +55,18 @@ public class ActionFragment extends Fragment {
             public void onClick(View v) {
                 String selectedOption = spinnerOptions.getSelectedItem().toString();
                 String selectedTimeOfDay = spinnerTimeOfDay.getSelectedItem().toString();
+                int day = datePicker.getDayOfMonth();
+                int month = datePicker.getMonth();
+                int year = datePicker.getYear();
+
+                String selectedDate = day + "/" + (month + 1) + "/" + year;
+
                 if (!selectedOption.isEmpty() && !selectedTimeOfDay.isEmpty()) {
                     // Bundle erstellen, um die ausgewählten Werte zu übergeben
                     Bundle bundle = new Bundle();
                     bundle.putString("selectedOption", selectedOption);
                     bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
+                    bundle.putString("selectedDate", selectedDate);
 
                     // SummaryFragment erstellen und Bundle setzen
                     MapFragment mapFragment = new MapFragment();
