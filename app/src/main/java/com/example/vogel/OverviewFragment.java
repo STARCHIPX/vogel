@@ -37,7 +37,7 @@ public class OverviewFragment extends Fragment {
         navigateToMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) requireActivity()).showMapFragment();
+                ((MainActivity) requireActivity()).showSelectionFragment();
             }
         });
 

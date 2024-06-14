@@ -3,20 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectionFragment"
-    android:gravity="center">
-
-    <Button
-        android:id="@+id/buttonAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Action" />
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".SelectionFragment">
 
     <Button
         android:id="@+id/buttonOverview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Overview"
-        android:layout_marginTop="16dp" />
+        android:layout_width="352dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:text="DB Übersicht" />
+
+    <Button
+        android:id="@+id/buttonAction"
+        android:layout_width="352dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:text="Aktion hinzufügen" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="352dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:text="Aktion löschen" />
 
 </LinearLayout>
