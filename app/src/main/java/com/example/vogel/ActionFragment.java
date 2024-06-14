@@ -53,7 +53,6 @@ public class ActionFragment extends Fragment {
                 String selectedOption = spinnerOptions.getSelectedItem().toString();
                 String selectedTimeOfDay = spinnerTimeOfDay.getSelectedItem().toString();
                 if (!selectedOption.isEmpty() && !selectedTimeOfDay.isEmpty()) {
-                    //neue Version
                     // Bundle erstellen, um die ausgewählten Werte zu übergeben
                     Bundle bundle = new Bundle();
                     bundle.putString("selectedOption", selectedOption);
@@ -64,7 +63,11 @@ public class ActionFragment extends Fragment {
                     mapFragment.setArguments(bundle);
 
                     // Wechsle zum MapFragment
-                   ((MainActivity) getActivity()).showMapFragment();
+                   //((MainActivity) getActivity()).showMapFragment();
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, mapFragment)
+                            .addToBackStack(null)
+                            .commit();
                 } else {
                     Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
