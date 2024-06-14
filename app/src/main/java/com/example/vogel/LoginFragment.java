@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment {
                 // Hier erfolgt die Überprüfung der Anmeldedaten
                 if (validateLogin(username, password)) {
                     // Wenn die Anmeldedaten korrekt sind, wechsle zum MapFragment
-                    ((MainActivity) requireActivity()).showActionFragment();
+                    ((MainActivity) requireActivity()).showSelectionFragment();
                 } else {
                     // Zeige eine Fehlermeldung
                     Toast.makeText(requireContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
