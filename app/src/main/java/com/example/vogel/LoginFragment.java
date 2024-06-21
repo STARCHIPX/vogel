@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment {
 
                 // Hier erfolgt die Überprüfung der Anmeldedaten
                 if (validateLogin(username, password)) {
-                    // Wenn die Anmeldedaten korrekt sind, wechsle zum MapFragment
+                    // Wenn die Anmeldedaten korrekt sind, wechsle
                     ((MainActivity) requireActivity()).showSelectionFragment();
                 } else {
                     // Zeige eine Fehlermeldung

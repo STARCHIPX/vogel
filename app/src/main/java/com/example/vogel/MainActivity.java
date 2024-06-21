@@ -19,28 +19,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showActionFragment() {
-        // Methode zum Wechseln zum ActionFragment nach erfolgreichem Login
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new ActionFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-    public void showMapFragment() {
-        // Ersetze durch das Fragment mit der Karte
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new MapFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-    public void showSummaryFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new SummaryFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-
-    }
-
     public void showSelectionFragment() {
         // Ersetze durch das Fragment mit der Selection
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
