@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.widget.DatePicker;
 
 
@@ -50,6 +52,9 @@ public class ActionFragment extends Fragment {
         timeOfDayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTimeOfDay.setAdapter(timeOfDayAdapter);
 
+        // Setzen Sie das Mindestdatum auf das heutige Datum
+        datePicker.setMinDate(System.currentTimeMillis() - 1000);
+
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +78,6 @@ public class ActionFragment extends Fragment {
                     mapFragment.setArguments(bundle);
 
                     // Wechsle zum MapFragment
-                   //((MainActivity) getActivity()).showMapFragment();
                     getParentFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, mapFragment)
                             .addToBackStack(null)

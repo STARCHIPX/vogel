@@ -43,6 +43,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             onCreate(db);
         }
 
+        public boolean deleteSelection(int id) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            return db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) > 0;
+        }
+
         public boolean insertSelection(String option, String timeOfDay, String date, String polygons) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
