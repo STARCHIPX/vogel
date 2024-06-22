@@ -6,8 +6,18 @@
     tools:context=".LoginFragment"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/HeaderTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Auswahl der Aktion"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
     <DatePicker
         android:id="@+id/datePicker"
+        android:layout_below="@id/HeaderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:calendarViewShown="true"
