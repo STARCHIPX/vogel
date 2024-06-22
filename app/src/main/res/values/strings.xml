@@ -19,30 +19,30 @@
         <item>water</item>
     </string-array>
     <string-array name="time_of_day_array">
-        <item>00:00 o'clock</item>
-        <item>01:00 o'clock</item>
-        <item>02:00 o'clock</item>
-        <item>03:00 o'clock</item>
-        <item>04:00 o'clock</item>
-        <item>05:00 o'clock</item>
-        <item>06:00 o'clock</item>
-        <item>07:00 o'clock</item>
-        <item>08:00 o'clock</item>
-        <item>09:00 o'clock</item>
-        <item>10:00 o'clock</item>
-        <item>11:00 o'clock</item>
-        <item>12:00 o'clock</item>
-        <item>13:00 o'clock</item>
-        <item>14:00 o'clock</item>
-        <item>15:00 o'clock</item>
-        <item>16:00 o'clock</item>
-        <item>17:00 o'clock</item>
-        <item>18:00 o'clock</item>
-        <item>19:00 o'clock</item>
-        <item>20:00 o'clock</item>
-        <item>21:00 o'clock</item>
-        <item>22:00 o'clock</item>
-        <item>23:00 o'clock</item>
+        <item>00:00 o clock</item>
+        <item>01:00 o clock</item>
+        <item>02:00 o clock</item>
+        <item>03:00 o clock</item>
+        <item>04:00 o clock</item>
+        <item>05:00 o clock</item>
+        <item>06:00 o clock</item>
+        <item>07:00 o clock</item>
+        <item>08:00 o clock</item>
+        <item>09:00 o clock</item>
+        <item>10:00 o clock</item>
+        <item>11:00 o clock</item>
+        <item>12:00 o clock</item>
+        <item>13:00 o clock</item>
+        <item>14:00 o clock</item>
+        <item>15:00 o clock</item>
+        <item>16:00 o clock</item>
+        <item>17:00 o clock</item>
+        <item>18:00 o clock</item>
+        <item>19:00 o clock</item>
+        <item>20:00 o clock</item>
+        <item>21:00 o clock</item>
+        <item>22:00 o clock</item>
+        <item>23:00 o clock</item>
     </string-array>
     <string-array name="duration_array">
         <item>1  hour</item>
