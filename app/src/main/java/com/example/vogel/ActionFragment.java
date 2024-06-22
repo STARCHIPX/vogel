@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 public class ActionFragment extends Fragment {
     public Spinner spinnerOptions;
     public Spinner spinnerTimeOfDay;
+    public Spinner spinnerDuration;
     private Button buttonConfirm;
     private Button buttonBack;
     private DatePicker datePicker;
@@ -36,6 +37,7 @@ public class ActionFragment extends Fragment {
         // Initialisierung der Views
         spinnerOptions = view.findViewById(R.id.spinnerOptions);
         spinnerTimeOfDay = view.findViewById(R.id.spinnerTimeOfDay);
+        spinnerDuration = view.findViewById(R.id.spinnerDuration);
         datePicker = view.findViewById(R.id.datePicker);
         buttonConfirm = view.findViewById(R.id.buttonConfirm);
         buttonBack = view.findViewById(R.id.buttonBack);
@@ -52,6 +54,12 @@ public class ActionFragment extends Fragment {
         timeOfDayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTimeOfDay.setAdapter(timeOfDayAdapter);
 
+        // Spinner Dauer hinzufügen
+        ArrayAdapter<CharSequence> durationAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.duration_array, android.R.layout.simple_spinner_item);
+        durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDuration.setAdapter(durationAdapter);
+
         // Setzen Sie das Mindestdatum auf das heutige Datum
         datePicker.setMinDate(System.currentTimeMillis() - 1000);
 
@@ -60,6 +68,7 @@ public class ActionFragment extends Fragment {
             public void onClick(View v) {
                 String selectedOption = spinnerOptions.getSelectedItem().toString();
                 String selectedTimeOfDay = spinnerTimeOfDay.getSelectedItem().toString();
+                String selectedDuration = spinnerDuration.getSelectedItem().toString();
                 int day = datePicker.getDayOfMonth();
                 int month = datePicker.getMonth();
                 int year = datePicker.getYear();
@@ -71,6 +80,7 @@ public class ActionFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("selectedOption", selectedOption);
                     bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
+                    bundle.putString("selectedDuration", selectedDuration);
                     bundle.putString("selectedDate", selectedDate);
 
                     // SummaryFragment erstellen und Bundle setzen

@@ -32,10 +32,17 @@
         android:layout_marginTop="20dp" />
 
     <Spinner
-        android:id="@+id/spinnerOptions"
+        android:id="@+id/spinnerDuration"
         android:layout_width="373dp"
         android:layout_height="37dp"
         android:layout_below="@id/spinnerTimeOfDay"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:id="@+id/spinnerOptions"
+        android:layout_width="373dp"
+        android:layout_height="37dp"
+        android:layout_below="@id/spinnerDuration"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp" />
 
@@ -44,7 +51,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerOptions"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Zurück" />
 
     <Button
@@ -52,7 +59,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerOptions"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Bestätigen"
         android:layout_toEndOf="@id/buttonBack"
         android:layout_marginStart="70dp"/>
