@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/mapView"
         android:layout_marginTop="50dp"
-        android:text="Zurück" />
+        android:text="Zurück"
+        tools:ignore="HardcodedText" />
 
 
     <Button
@@ -23,7 +24,8 @@
         android:layout_below="@id/mapView"
         android:text="Bestätigen"
         android:layout_toEndOf="@id/buttonBack"
-        android:layout_marginStart="70dp"/>
+        android:layout_marginStart="70dp"
+        tools:ignore="HardcodedText" />
 
     <org.osmdroid.views.MapView
         android:id="@+id/mapView"

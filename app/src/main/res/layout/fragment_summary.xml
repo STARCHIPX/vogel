@@ -13,7 +13,8 @@
         android:text="Übersicht zur Buchung"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp"/>
+        android:paddingBottom="8dp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/selectedDateTextView"
@@ -21,7 +22,8 @@
         android:layout_height="wrap_content"
         android:text="Selected Date"
         android:layout_marginTop="16dp"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/selectedTimeOfDayTextView"
@@ -29,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedDateTextView"
         android:text="Selected Time of Day: "
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/selectedDurationTextView"
@@ -37,7 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedTimeOfDayTextView"
         android:text="Selected Duration: "
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/selectedOptionTextView"
@@ -45,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedDurationTextView"
         android:layout_marginTop="20dp"
-        android:text="Selected Option: "/>
+        android:text="Selected Option: "
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/selectedPolygonsTextView"
@@ -53,7 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedOptionTextView"
         android:text="Polygons: "
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonBack"
@@ -61,7 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedPolygonsTextView"
         android:layout_marginTop="50dp"
-        android:text="Zurück" />
+        android:text="Zurück"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonSaveToDatabase"
@@ -71,6 +78,7 @@
         android:layout_marginTop="50dp"
         android:text="Speichern"
         android:layout_toEndOf="@id/buttonBack"
-        android:layout_marginStart="70dp"/>
+        android:layout_marginStart="70dp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
