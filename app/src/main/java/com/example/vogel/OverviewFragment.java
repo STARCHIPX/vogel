@@ -54,7 +54,7 @@ public class OverviewFragment extends Fragment {
 
         // Datenbankzugriff und Werte abrufen
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-        Cursor cursor = dbHelper.getSelections(isAdmin);
+        Cursor cursor = dbHelper.getSelections();
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
