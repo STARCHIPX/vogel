@@ -14,8 +14,11 @@ import androidx.fragment.app.FragmentManager;
 import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
-
-/** @noinspection resource*/
+/**
+ * SummaryFragment class that displays the summary of the user's selections and allows saving
+ * these selections to the database.
+ * @noinspection resource
+ */
 public class SummaryFragment extends Fragment {
 
     private TextView selectedOptionTextView;
@@ -25,13 +28,30 @@ public class SummaryFragment extends Fragment {
     private TextView selectedPolygonsTextView;
     private String username;
 
-    //private String polygonsString;
-
+    /**
+     * Called to have the fragment instantiate its user interface view. This method inflates
+     * the fragment's layout.
+     *
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment,
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                           The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return The View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_summary, container, false);
     }
+
+    /**
+     * Called immediately after onCreateView(LayoutInflater, ViewGroup, Bundle) has returned,
+     * but before any saved state has been restored in to the view. This method initializes the
+     * views and sets the onClickListeners for buttons.
+     *
+     * @param view               The View returned by onCreateView(LayoutInflater, ViewGroup, Bundle).
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     */
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -45,7 +65,7 @@ public class SummaryFragment extends Fragment {
         Button saveToDatabaseButton = view.findViewById(R.id.buttonSaveToDatabase);
         Button buttonBack = view.findViewById(R.id.buttonBack);
 
-        // Empfange die übergebenen Argumente
+        // Receive passed arguments
         Bundle args = getArguments();
         if (args != null) {
             String selectedOption = args.getString("selectedOption");
@@ -74,15 +94,20 @@ public class SummaryFragment extends Fragment {
             selectedPolygonsTextView.setText(polygonsStringBuilder.toString());
         }
 
-        // OnClickListener für den Button setzen
+        // OnClickListener for back button
         saveToDatabaseButton.setOnClickListener(v -> saveToDatabase());
 
-        // Funktionalität für den Zurück-Button
+        // Set functionality for the back button
         buttonBack.setOnClickListener(v -> requireActivity().onBackPressed());
     }
 
+    /**
+     * Saves the current selection to the database. If the operation is successful,
+     * a toast message is displayed and the OverviewFragment is shown.
+     * If the operation fails, an error toast message is displayed.
+     */
     private void saveToDatabase() {
-        // Datenbankzugriff und Schreiboperationen hier durchführen
+        // Database access and write operations here
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         String selectedOption = selectedOptionTextView.getText().toString();
         String selectedTimeOfDay = selectedTimeOfDayTextView.getText().toString();
@@ -103,6 +128,11 @@ public class SummaryFragment extends Fragment {
             Toast.makeText(getContext(), "Error saving selection to database", Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * Called when the view previously created by onCreateView(LayoutInflater, ViewGroup, Bundle)
+     * has been detached from the fragment. Cleans up resources related to the view.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
