@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.database.Cursor;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -40,12 +40,19 @@ public class OverviewFragment extends Fragment {
                 ((MainActivity) requireActivity()).showSelectionFragment();
             }
         });
+        // Datenbankzugriff und Werte abrufen
+        displaySelections();
+    }
+
+    private void displaySelections() {
+        databaseValuesLayout.removeAllViews();
 
         // Datenbankzugriff und Werte abrufen
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         Cursor cursor = dbHelper.getSelections();
 
         while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
@@ -105,6 +112,28 @@ public class OverviewFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             polygonsTextView.setText("Polygons: " + polygons);
             innerLayout.addView(polygonsTextView);
+
+            // Schaltfläche zum Löschen hinzufügen
+            Button deleteButton = new Button(getContext());
+            deleteButton.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            deleteButton.setText("Delete");
+            innerLayout.addView(deleteButton);
+
+            // OnClickListener für die Löschtaste
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+                    if (dbHelper.deleteSelection(id)) {
+                        Toast.makeText(getContext(), "Entry deleted", Toast.LENGTH_SHORT).show();
+                        displaySelections(); // Ansicht aktualisieren
+                    } else {
+                        Toast.makeText(getContext(), "Error deleting entry", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
             entryCardView.addView(innerLayout);
             databaseValuesLayout.addView(entryCardView);
