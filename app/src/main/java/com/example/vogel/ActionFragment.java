@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.widget.DatePicker;
+import android.content.SharedPreferences;
+import android.content.Context;
 
 
 public class ActionFragment extends Fragment {
@@ -24,6 +26,8 @@ public class ActionFragment extends Fragment {
     private Button buttonConfirm;
     private Button buttonBack;
     private DatePicker datePicker;
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,6 +45,8 @@ public class ActionFragment extends Fragment {
         datePicker = view.findViewById(R.id.datePicker);
         buttonConfirm = view.findViewById(R.id.buttonConfirm);
         buttonBack = view.findViewById(R.id.buttonBack);
+
+        sharedPreferences = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
 
         // Spinner Aktivitäten hinzufügen
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -76,12 +82,15 @@ public class ActionFragment extends Fragment {
                 String selectedDate = day + "/" + (month + 1) + "/" + year;
 
                 if (!selectedOption.isEmpty() && !selectedTimeOfDay.isEmpty()) {
+                    String username = sharedPreferences.getString("username", "");
+
                     // Bundle erstellen, um die ausgewählten Werte zu übergeben
                     Bundle bundle = new Bundle();
                     bundle.putString("selectedOption", selectedOption);
                     bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
                     bundle.putString("selectedDuration", selectedDuration);
                     bundle.putString("selectedDate", selectedDate);
+                    bundle.putString("username", username);
 
                     // SummaryFragment erstellen und Bundle setzen
                     MapFragment mapFragment = new MapFragment();

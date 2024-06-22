@@ -1,5 +1,6 @@
 package com.example.vogel;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,11 +16,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import android.content.Context;
 
 public class OverviewFragment extends Fragment {
 
     //private TextView databaseValuesTextView;
     private LinearLayout databaseValuesLayout;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class OverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        sharedPreferences = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
         databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
         // Finden Sie den Button und setzen Sie den OnClickListener
@@ -47,9 +51,12 @@ public class OverviewFragment extends Fragment {
     private void displaySelections() {
         databaseValuesLayout.removeAllViews();
 
+        String username = sharedPreferences.getString("username", "");
+        boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+
         // Datenbankzugriff und Werte abrufen
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-        Cursor cursor = dbHelper.getSelections();
+        Cursor cursor = dbHelper.getSelections(isAdmin);
 
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
@@ -111,7 +118,7 @@ public class OverviewFragment extends Fragment {
             durationTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            durationTextView.setText("Duration: " + duration);
+            durationTextView.setText(duration);
             innerLayout.addView(durationTextView);
 
             TextView polygonsTextView = new TextView(getContext());
@@ -134,9 +141,9 @@ public class OverviewFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-                    if (dbHelper.deleteSelection(id)) {
+                    if (dbHelper.deleteSelection(id, username, isAdmin)) {
                         Toast.makeText(getContext(), "Entry deleted", Toast.LENGTH_SHORT).show();
-                        displaySelections(); // Ansicht aktualisieren
+                        displaySelections();
                     } else {
                         Toast.makeText(getContext(), "Error deleting entry", Toast.LENGTH_SHORT).show();
                     }
