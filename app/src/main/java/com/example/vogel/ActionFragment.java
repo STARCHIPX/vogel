@@ -19,8 +19,6 @@ public class ActionFragment extends Fragment {
     public Spinner spinnerOptions;
     public Spinner spinnerTimeOfDay;
     public Spinner spinnerDuration;
-    private Button buttonConfirm;
-    private Button buttonBack;
     private DatePicker datePicker;
     private SharedPreferences sharedPreferences;
 
@@ -39,8 +37,8 @@ public class ActionFragment extends Fragment {
         spinnerTimeOfDay = view.findViewById(R.id.spinnerTimeOfDay);
         spinnerDuration = view.findViewById(R.id.spinnerDuration);
         datePicker = view.findViewById(R.id.datePicker);
-        buttonConfirm = view.findViewById(R.id.buttonConfirm);
-        buttonBack = view.findViewById(R.id.buttonBack);
+        Button buttonConfirm = view.findViewById(R.id.buttonConfirm);
+        Button buttonBack = view.findViewById(R.id.buttonBack);
 
         sharedPreferences = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
 
@@ -65,50 +63,44 @@ public class ActionFragment extends Fragment {
         // Setzen Sie das Mindestdatum auf das heutige Datum
         datePicker.setMinDate(System.currentTimeMillis() - 1000);
 
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String selectedOption = spinnerOptions.getSelectedItem().toString();
-                String selectedTimeOfDay = spinnerTimeOfDay.getSelectedItem().toString();
-                String selectedDuration = spinnerDuration.getSelectedItem().toString();
-                int day = datePicker.getDayOfMonth();
-                int month = datePicker.getMonth();
-                int year = datePicker.getYear();
+        buttonConfirm.setOnClickListener(v -> {
+            String selectedOption = spinnerOptions.getSelectedItem().toString();
+            String selectedTimeOfDay = spinnerTimeOfDay.getSelectedItem().toString();
+            String selectedDuration = spinnerDuration.getSelectedItem().toString();
+            int day = datePicker.getDayOfMonth();
+            int month = datePicker.getMonth();
+            int year = datePicker.getYear();
 
-                String selectedDate = day + "/" + (month + 1) + "/" + year;
+            String selectedDate = day + "/" + (month + 1) + "/" + year;
 
-                if (!selectedOption.isEmpty() && !selectedTimeOfDay.isEmpty()) {
-                    String username = sharedPreferences.getString("username", "");
+            if (!selectedOption.isEmpty() && !selectedTimeOfDay.isEmpty()) {
+                String username = sharedPreferences.getString("username", "");
 
-                    // Bundle erstellen, um die ausgewählten Werte zu übergeben
-                    Bundle bundle = new Bundle();
-                    bundle.putString("selectedOption", selectedOption);
-                    bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
-                    bundle.putString("selectedDuration", selectedDuration);
-                    bundle.putString("selectedDate", selectedDate);
-                    bundle.putString("username", username);
+                // Bundle erstellen, um die ausgewählten Werte zu übergeben
+                Bundle bundle = new Bundle();
+                bundle.putString("selectedOption", selectedOption);
+                bundle.putString("selectedTimeOfDay", selectedTimeOfDay);
+                bundle.putString("selectedDuration", selectedDuration);
+                bundle.putString("selectedDate", selectedDate);
+                bundle.putString("username", username);
 
-                    // SummaryFragment erstellen und Bundle setzen
-                    MapFragment mapFragment = new MapFragment();
-                    mapFragment.setArguments(bundle);
+                // SummaryFragment erstellen und Bundle setzen
+                MapFragment mapFragment = new MapFragment();
+                mapFragment.setArguments(bundle);
 
-                    // Wechsle zum MapFragment
-                    getParentFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, mapFragment)
-                            .addToBackStack(null)
-                            .commit();
-                } else {
-                    Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
-                }
+                // Wechsle zum MapFragment
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, mapFragment)
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
             }
         });
         // Funktionalität für den Zurück-Button
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //getParentFragmentManager().popBackStack();
-                requireActivity().onBackPressed();
-            }
+        buttonBack.setOnClickListener(v -> {
+            //getParentFragmentManager().popBackStack();
+            requireActivity().onBackPressed();
         });
     }
 

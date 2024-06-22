@@ -11,6 +11,7 @@ import java.util.Locale;
 import android.database.sqlite.SQLiteConstraintException;
 
 
+/** @noinspection CallToPrintStackTrace*/
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "selection.db";
     private static final int DATABASE_VERSION = 1;
