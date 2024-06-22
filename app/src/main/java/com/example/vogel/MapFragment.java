@@ -20,13 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapFragment extends Fragment {
-    private Button buttonConfirm;
-    private Button buttonBack;
     private MapView mapView;
     private List<GeoPoint> selectedArea;
     private Polygon currentPolygon;
     private Polygon selectedPolygon;
-    private Bundle bundle;
 
     @Nullable
     @Override
@@ -42,8 +39,8 @@ public class MapFragment extends Fragment {
         mapView.getController().setZoom(17);
         mapView.getController().setCenter(new GeoPoint(51.03378, 13.73480));
 
-        buttonConfirm = view.findViewById(R.id.buttonConfirm);
-        buttonBack = view.findViewById(R.id.buttonBack);
+        Button buttonConfirm = view.findViewById(R.id.buttonConfirm);
+        Button buttonBack = view.findViewById(R.id.buttonBack);
 
         selectedArea = new ArrayList<>();
         currentPolygon = new Polygon(mapView);
@@ -51,38 +48,30 @@ public class MapFragment extends Fragment {
         // Laden Sie vorhandene Polygone und f체gen Sie sie zur Karte hinzu
         loadExistingPolygons();
 
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedPolygon != null) {
-                    selectedArea = selectedPolygon.getPoints();
-                }
-
-                // Aktuelles Bundle abrufen
-                Bundle bundle = getArguments();
-                if (bundle == null) {
-                    bundle = new Bundle();
-                }
-
-                // Neuen Wert hinzufügen
-                bundle.putParcelableArrayList("selectedArea", (ArrayList<GeoPoint>) selectedArea);
-
-                SummaryFragment summaryFragment = new SummaryFragment();
-                summaryFragment.setArguments(bundle);
-
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, summaryFragment)
-                        .addToBackStack(null)
-                        .commit();
+        buttonConfirm.setOnClickListener(v -> {
+            if (selectedPolygon != null) {
+                selectedArea = selectedPolygon.getPoints();
             }
+
+            // Aktuelles Bundle abrufen
+            Bundle bundle = getArguments();
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+
+            // Neuen Wert hinzufügen
+            bundle.putParcelableArrayList("selectedArea", (ArrayList<GeoPoint>) selectedArea);
+
+            SummaryFragment summaryFragment = new SummaryFragment();
+            summaryFragment.setArguments(bundle);
+
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, summaryFragment)
+                    .addToBackStack(null)
+                    .commit();
         });
 
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requireActivity().onBackPressed();
-            }
-        });
+        buttonBack.setOnClickListener(v -> requireActivity().onBackPressed());
 
         return view;
     }
@@ -137,13 +126,10 @@ public class MapFragment extends Fragment {
         polygon.setStrokeColor(0xFF0000FF);
         polygon.setStrokeWidth(5);
 
-        polygon.setOnClickListener(new Polygon.OnClickListener() {
-            @Override
-            public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
-                selectedPolygon = polygon;
-                Toast.makeText(getContext(), "Polygon selected", Toast.LENGTH_SHORT).show();
-                return true;
-            }
+        polygon.setOnClickListener((polygon1, mapView1, eventPos) -> {
+            selectedPolygon = polygon1;
+            Toast.makeText(getContext(), "Polygon selected", Toast.LENGTH_SHORT).show();
+            return true;
         });
 
         mapView.getOverlayManager().add(polygon);
