@@ -10,7 +10,7 @@
         android:id="@+id/databaseValuesHeaderTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Übersicht aller Buchungen"
+        android:text="Overview of all entries"
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingBottom="8dp"
@@ -20,7 +20,7 @@
         android:id="@+id/ButtonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menü"
+        android:text="Selection"
         android:layout_marginBottom="16dp"
         android:layout_gravity="end"
         tools:ignore="HardcodedText" />
