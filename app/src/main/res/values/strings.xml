@@ -16,11 +16,32 @@
     <string-array name="options_array">
         <item>Mähen</item>
         <item>Düngen</item>
-        <item>Wasweißich</item>
+        <item>Ernten</item>
     </string-array>
     <string-array name="time_of_day_array">
-        <item>morgens</item>
-        <item>mittags</item>
-        <item>abends</item>
+        <item>00:00 Uhr</item>
+        <item>01:00 Uhr</item>
+        <item>02:00 Uhr</item>
+        <item>03:00 Uhr</item>
+        <item>04:00 Uhr</item>
+        <item>05:00 Uhr</item>
+        <item>06:00 Uhr</item>
+        <item>07:00 Uhr</item>
+        <item>08:00 Uhr</item>
+        <item>09:00 Uhr</item>
+        <item>10:00 Uhr</item>
+        <item>11:00 Uhr</item>
+        <item>12:00 Uhr</item>
+        <item>13:00 Uhr</item>
+        <item>14:00 Uhr</item>
+        <item>15:00 Uhr</item>
+        <item>16:00 Uhr</item>
+        <item>17:00 Uhr</item>
+        <item>18:00 Uhr</item>
+        <item>19:00 Uhr</item>
+        <item>20:00 Uhr</item>
+        <item>21:00 Uhr</item>
+        <item>22:00 Uhr</item>
+        <item>23:00 Uhr</item>
     </string-array>
 </resources>
