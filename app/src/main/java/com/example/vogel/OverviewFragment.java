@@ -56,6 +56,7 @@ public class OverviewFragment extends Fragment {
             String option = cursor.getString(cursor.getColumnIndexOrThrow("option"));
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
+            String duration = cursor.getString(cursor.getColumnIndexOrThrow("duration"));
             String polygons = cursor.getString(cursor.getColumnIndexOrThrow("polygons"));
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
 
@@ -78,19 +79,19 @@ public class OverviewFragment extends Fragment {
             innerLayout.setOrientation(LinearLayout.VERTICAL);
             innerLayout.setPadding(16, 16, 16, 16);
 
-            TextView dateTextView = new TextView(getContext());
-            dateTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            dateTextView.setText(date);
-            innerLayout.addView(dateTextView);
-
             TextView timestampTextView = new TextView(getContext());
             timestampTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             timestampTextView.setText(timestamp);
             innerLayout.addView(timestampTextView);
+
+            TextView dateTextView = new TextView(getContext());
+            dateTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            dateTextView.setText(date);
+            innerLayout.addView(dateTextView);
 
             TextView optionTextView = new TextView(getContext());
             optionTextView.setLayoutParams(new LinearLayout.LayoutParams(
@@ -105,6 +106,13 @@ public class OverviewFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             timeOfDayTextView.setText(timeOfDay);
             innerLayout.addView(timeOfDayTextView);
+
+            TextView durationTextView = new TextView(getContext());
+            durationTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            durationTextView.setText("Duration: " + duration);
+            innerLayout.addView(durationTextView);
 
             TextView polygonsTextView = new TextView(getContext());
             polygonsTextView.setLayoutParams(new LinearLayout.LayoutParams(

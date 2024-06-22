@@ -44,4 +44,18 @@
         <item>22:00 Uhr</item>
         <item>23:00 Uhr</item>
     </string-array>
+    <string-array name="duration_array">
+        <item>1  Stunde</item>
+        <item>2  Stunden</item>
+        <item>3  Stunden</item>
+        <item>4  Stunden</item>
+        <item>5  Stunden</item>
+        <item>6  Stunden</item>
+        <item>7  Stunden</item>
+        <item>8  Stunden</item>
+        <item>9  Stunden</item>
+        <item>10 Stunden</item>
+        <item>11 Stunden</item>
+        <item>12 Stunden</item>
+    </string-array>
 </resources>

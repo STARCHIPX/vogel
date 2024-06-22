@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_POLYGONS = "polygons";
     private static final String COLUMN_TIMESTAMP = "timestamp";
+    private static final String COLUMN_DURATION = "duration";
 
         public DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,7 +34,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_TIME_OF_DAY + " TEXT, " +
                     COLUMN_POLYGONS + " TEXT, " +
                     COLUMN_DATE + " TEXT, " +
-                    COLUMN_TIMESTAMP + " TEXT)";
+                    COLUMN_TIMESTAMP + " TEXT, " +
+                    COLUMN_DURATION + " TEXT)";
             db.execSQL(createTable);
         }
 
@@ -48,13 +50,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) > 0;
         }
 
-        public boolean insertSelection(String option, String timeOfDay, String date, String polygons) {
+        public boolean insertSelection(String option, String timeOfDay, String date, String polygons, String duration) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(COLUMN_OPTION, option);
             contentValues.put(COLUMN_TIME_OF_DAY, timeOfDay);
             contentValues.put(COLUMN_DATE, date);
             contentValues.put(COLUMN_POLYGONS, polygons);
+            contentValues.put(COLUMN_DURATION, duration);
 
             String currentDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
             contentValues.put(COLUMN_TIMESTAMP, currentDateAndTime);
