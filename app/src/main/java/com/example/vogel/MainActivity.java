@@ -1,8 +1,11 @@
 package com.example.vogel;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentTransaction;
+import android.content.Context;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +28,21 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, new SelectionFragment());
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("username");
+        editor.remove("isAdmin");
+        editor.apply();
+        showLoginFragment();
+    }
+
+    public void showLoginFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new LoginFragment())
+                .commit();
     }
 
     @Override

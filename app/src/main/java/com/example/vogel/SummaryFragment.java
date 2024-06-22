@@ -26,6 +26,7 @@ public class SummaryFragment extends Fragment {
     private TextView selectedPolygonsTextView;
     private Button saveToDatabaseButton;
     private Button buttonBack;
+    private String username;
 
     //private String polygonsString;
 
@@ -53,12 +54,14 @@ public class SummaryFragment extends Fragment {
             String selectedTimeOfDay = args.getString("selectedTimeOfDay");
             String selectedDate = args.getString("selectedDate");
             String selectedDuration = args.getString("selectedDuration");
+            username = args.getString("username");
             ArrayList<GeoPoint> selectedArea = args.getParcelableArrayList("selectedArea");
+
 
             selectedOptionTextView.setText("Selected Option: " + selectedOption);
             selectedTimeOfDayTextView.setText("Selected Time of Day: " + selectedTimeOfDay);
             selectedDateTextView.setText("Selected Date: " + selectedDate);
-            selectedDurationTextView.setText(selectedDuration);
+            selectedDurationTextView.setText("Selected Duration: " + selectedDuration);
 
             // Build the polygons string
             StringBuilder polygonsStringBuilder = new StringBuilder();
@@ -98,8 +101,9 @@ public class SummaryFragment extends Fragment {
         String selectedDate = selectedDateTextView.getText().toString();
         String selectedDuration = selectedDurationTextView.getText().toString();
         String polygonsString = selectedPolygonsTextView.getText().toString();
+        String username = this.username;
 
-        boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay, selectedDate, polygonsString, selectedDuration);
+        boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay, selectedDate, polygonsString, selectedDuration, username);
         if (isInserted) {
             Toast.makeText(getContext(), "Selection saved to database", Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getParentFragmentManager();
