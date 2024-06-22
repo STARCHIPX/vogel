@@ -17,18 +17,35 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import android.content.Context;
 
-/** @noinspection resource*/
+/**
+ * A fragment that displays the user's selections from the database.
+ * @noinspection ALL
+ */
 public class OverviewFragment extends Fragment {
 
     //private TextView databaseValuesTextView;
     private LinearLayout databaseValuesLayout;
     private SharedPreferences sharedPreferences;
 
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_overview, container, false);
     }
 
+    /**
+     * Called immediately after {@link #onCreateView} has returned, but before any saved state has been restored in to the view.
+     *
+     * @param view The View returned by {@link #onCreateView}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -36,13 +53,16 @@ public class OverviewFragment extends Fragment {
         sharedPreferences = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
         databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
 
-        // Finden Sie den Button und setzen Sie den OnClickListener
+        // Find the button and set its OnClickListener
         Button navigateToMapButton = view.findViewById(R.id.ButtonNext);
         navigateToMapButton.setOnClickListener(v -> ((MainActivity) requireActivity()).showSelectionFragment());
-        // Datenbankzugriff und Werte abrufen
+        // Display selections from database
         displaySelections();
     }
 
+    /**
+     * Displays the selections stored in the database.
+     */
     @SuppressLint("SetTextI18n")
     private void displaySelections() {
         databaseValuesLayout.removeAllViews();
@@ -50,7 +70,7 @@ public class OverviewFragment extends Fragment {
         String username = sharedPreferences.getString("username", "");
         boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
 
-        // Datenbankzugriff und Werte abrufen
+        // Access the database and retrieve values
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         Cursor cursor = dbHelper.getSelections();
 
@@ -63,18 +83,18 @@ public class OverviewFragment extends Fragment {
             String polygons = cursor.getString(cursor.getColumnIndexOrThrow("polygons"));
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
 
-            // Erstelle eine CardView für jeden Eintrag
+            // Create a CardView for each entry
             CardView entryCardView = new CardView(getContext());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(0, 0, 0, 16); // Abstand zwischen den Einträgen
+            layoutParams.setMargins(0, 0, 0, 16); // space between
             entryCardView.setLayoutParams(layoutParams);
-            entryCardView.setRadius(16); // Runde Ecken
-            entryCardView.setCardBackgroundColor(Color.WHITE); // Hintergrundfarbe
-            entryCardView.setCardElevation(8); // Schatten
+            entryCardView.setRadius(16); //rounded corners
+            entryCardView.setCardBackgroundColor(Color.WHITE); // background color
+            entryCardView.setCardElevation(8); // shadow
 
-            // Inhalt der CardView definieren
+            // Define  content of the CardView
             LinearLayout innerLayout = new LinearLayout(getContext());
             innerLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -124,7 +144,7 @@ public class OverviewFragment extends Fragment {
             polygonsTextView.setText("Polygons: " + polygons);
             innerLayout.addView(polygonsTextView);
 
-            // Schaltfläche zum Löschen hinzufügen
+            // Add a delete button
             Button deleteButton = new Button(getContext());
             deleteButton.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -132,7 +152,7 @@ public class OverviewFragment extends Fragment {
             deleteButton.setText("Delete");
             innerLayout.addView(deleteButton);
 
-            // OnClickListener für die Löschtaste
+            // Set OnClickListener for the delete button
             deleteButton.setOnClickListener(v -> {
                 DatabaseHelper dbHelper1 = new DatabaseHelper(getContext());
                 if (dbHelper1.deleteSelection(id, username, isAdmin)) {
