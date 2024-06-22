@@ -14,6 +14,7 @@ import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
 
+/** @noinspection resource*/
 public class SummaryFragment extends Fragment {
 
     private TextView selectedOptionTextView;
@@ -21,8 +22,6 @@ public class SummaryFragment extends Fragment {
     private TextView selectedDateTextView;
     private TextView selectedDurationTextView;
     private TextView selectedPolygonsTextView;
-    private Button saveToDatabaseButton;
-    private Button buttonBack;
     private String username;
 
     //private String polygonsString;
@@ -41,8 +40,8 @@ public class SummaryFragment extends Fragment {
         selectedDateTextView = view.findViewById(R.id.selectedDateTextView);
         selectedDurationTextView = view.findViewById(R.id.selectedDurationTextView);
         selectedPolygonsTextView = view.findViewById(R.id.selectedPolygonsTextView);
-        saveToDatabaseButton = view.findViewById(R.id.buttonSaveToDatabase);
-        buttonBack = view.findViewById(R.id.buttonBack);
+        Button saveToDatabaseButton = view.findViewById(R.id.buttonSaveToDatabase);
+        Button buttonBack = view.findViewById(R.id.buttonBack);
 
         // Empfange die übergebenen Argumente
         Bundle args = getArguments();
@@ -74,20 +73,10 @@ public class SummaryFragment extends Fragment {
         }
 
         // OnClickListener für den Button setzen
-        saveToDatabaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveToDatabase();
-            }
-        });
+        saveToDatabaseButton.setOnClickListener(v -> saveToDatabase());
 
         // Funktionalität für den Zurück-Button
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requireActivity().onBackPressed();
-            }
-        });
+        buttonBack.setOnClickListener(v -> requireActivity().onBackPressed());
     }
 
     private void saveToDatabase() {

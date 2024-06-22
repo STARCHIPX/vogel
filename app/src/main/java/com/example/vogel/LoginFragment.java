@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
+/** @noinspection resource*/
 public class LoginFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     @Override
@@ -33,54 +34,48 @@ public class LoginFragment extends Fragment {
         Button buttonLogin = view.findViewById(R.id.buttonLogin);
         Button buttonRegister = view.findViewById(R.id.buttonRegister);
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = editTextUsername.getText().toString();
-                String password = editTextPassword.getText().toString();
+        buttonLogin.setOnClickListener(view1 -> {
+            String username = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
 
-                // Hier erfolgt die Überprüfung der Anmeldedaten
-                if (validateLogin(username, password)) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", username);
-                    editor.putBoolean("isAdmin", "admin".equals(username));
-                    editor.apply();
-                    ((MainActivity) requireActivity()).showSelectionFragment();
-                } else {
-                    // Zeige eine Fehlermeldung
-                    Toast.makeText(requireContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
-                }
+            // Hier erfolgt die Überprüfung der Anmeldedaten
+            if (validateLogin(username, password)) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", username);
+                editor.putBoolean("isAdmin", "admin".equals(username));
+                editor.apply();
+                ((MainActivity) requireActivity()).showSelectionFragment();
+            } else {
+                // Zeige eine Fehlermeldung
+                Toast.makeText(requireContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
         });
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = editTextUsername.getText().toString();
-                String password = editTextPassword.getText().toString();
+        buttonRegister.setOnClickListener(v -> {
+            String username = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
 
-                // Überprüfen, ob Benutzername und Passwort nicht leer sind
-                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(requireContext(), "Please enter username and password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            // Überprüfen, ob Benutzername und Passwort nicht leer sind
+            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+                Toast.makeText(requireContext(), "Please enter username and password", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                // Registrieren des neuen Benutzers
-                DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-                boolean isRegistered = dbHelper.insertUser(username, password);
+            // Registrieren des neuen Benutzers
+            DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+            boolean isRegistered = dbHelper.insertUser(username, password);
 
-                if (isRegistered) {
-                    Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show();
+            if (isRegistered) {
+                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show();
 
-                    // Automatisch nach der Registrierung anmelden
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", username);
-                    editor.putBoolean("isAdmin", false); // Neuer Benutzer ist standardmäßig kein Admin
-                    editor.apply();
+                // Automatisch nach der Registrierung anmelden
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", username);
+                editor.putBoolean("isAdmin", false); // Neuer Benutzer ist standardmäßig kein Admin
+                editor.apply();
 
-                    ((MainActivity) requireActivity()).showSelectionFragment();
-                } else {
-                    Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show();
-                }
+                ((MainActivity) requireActivity()).showSelectionFragment();
+            } else {
+                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show();
             }
         });
     }

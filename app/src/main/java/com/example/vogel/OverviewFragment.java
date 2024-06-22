@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import android.content.Context;
 
+/** @noinspection resource*/
 public class OverviewFragment extends Fragment {
 
     //private TextView databaseValuesTextView;
@@ -36,12 +37,7 @@ public class OverviewFragment extends Fragment {
 
         // Finden Sie den Button und setzen Sie den OnClickListener
         Button navigateToMapButton = view.findViewById(R.id.ButtonNext);
-        navigateToMapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) requireActivity()).showSelectionFragment();
-            }
-        });
+        navigateToMapButton.setOnClickListener(v -> ((MainActivity) requireActivity()).showSelectionFragment());
         // Datenbankzugriff und Werte abrufen
         displaySelections();
     }
@@ -135,16 +131,13 @@ public class OverviewFragment extends Fragment {
             innerLayout.addView(deleteButton);
 
             // OnClickListener für die Löschtaste
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-                    if (dbHelper.deleteSelection(id, username, isAdmin)) {
-                        Toast.makeText(getContext(), "Entry deleted", Toast.LENGTH_SHORT).show();
-                        displaySelections();
-                    } else {
-                        Toast.makeText(getContext(), "Error deleting entry", Toast.LENGTH_SHORT).show();
-                    }
+            deleteButton.setOnClickListener(v -> {
+                DatabaseHelper dbHelper1 = new DatabaseHelper(getContext());
+                if (dbHelper1.deleteSelection(id, username, isAdmin)) {
+                    Toast.makeText(getContext(), "Entry deleted", Toast.LENGTH_SHORT).show();
+                    displaySelections();
+                } else {
+                    Toast.makeText(getContext(), "Error deleting entry", Toast.LENGTH_SHORT).show();
                 }
             });
 
