@@ -5,20 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import android.content.Context;
-import android.content.SharedPreferences;
 
 
 public class SelectionFragment extends Fragment {
-
-    private Button buttonAction;
-    private Button buttonOverview;
-    private Button buttonLogout;
-    private SharedPreferences sharedPreferences;
-    private LinearLayout databaseValuesLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,39 +21,25 @@ public class SelectionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        sharedPreferences = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
-        databaseValuesLayout = view.findViewById(R.id.databaseValuesLayout);
+        Button buttonAction = view.findViewById(R.id.buttonAction);
+        Button buttonOverview = view.findViewById(R.id.buttonOverview);
+        Button buttonLogout = view.findViewById(R.id.buttonLogout);
 
-        buttonAction = view.findViewById(R.id.buttonAction);
-        buttonOverview = view.findViewById(R.id.buttonOverview);
-        buttonLogout = view.findViewById(R.id.buttonLogout);
-
-        buttonAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Öffne das Fragment für die Aktion (ActionFragment)
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new ActionFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
+        buttonAction.setOnClickListener(v -> {
+            // Öffne das Fragment für die Aktion (ActionFragment)
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ActionFragment())
+                    .addToBackStack(null)
+                    .commit();
         });
 
-        buttonOverview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Öffne das Fragment für die Übersicht (OverviewFragment)
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new OverviewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
+        buttonOverview.setOnClickListener(v -> {
+            // Öffne das Fragment für die Übersicht (OverviewFragment)
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new OverviewFragment())
+                    .addToBackStack(null)
+                    .commit();
         });
-        buttonLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) requireActivity()).logout();
-            }
-        });
+        buttonLogout.setOnClickListener(v -> ((MainActivity) requireActivity()).logout());
     }
 }

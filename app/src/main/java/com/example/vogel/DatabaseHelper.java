@@ -111,13 +111,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getSelections(boolean isAdmin) {
+    public Cursor getSelections() {
         SQLiteDatabase db = this.getWritableDatabase();
-        if (isAdmin) {
-            return db.rawQuery("SELECT * FROM " + TABLE_SELECTIONS, null);
-        } else {
-            return db.rawQuery("SELECT * FROM " + TABLE_SELECTIONS, null);
-        }
+        return db.rawQuery("SELECT * FROM " + TABLE_SELECTIONS, null);
     }
 
     public boolean validateLogin(String username, String password) {
