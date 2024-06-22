@@ -1,5 +1,6 @@
 package com.example.vogel;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class OverviewFragment extends Fragment {
         displaySelections();
     }
 
+    @SuppressLint("SetTextI18n")
     private void displaySelections() {
         databaseValuesLayout.removeAllViews();
 
