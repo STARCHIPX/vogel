@@ -14,48 +14,48 @@
     </string>
     <string name="zur_ck">Zurück</string>
     <string-array name="options_array">
-        <item>Mähen</item>
-        <item>Düngen</item>
-        <item>Ernten</item>
+        <item>reap</item>
+        <item>fertilize</item>
+        <item>water</item>
     </string-array>
     <string-array name="time_of_day_array">
-        <item>00:00 Uhr</item>
-        <item>01:00 Uhr</item>
-        <item>02:00 Uhr</item>
-        <item>03:00 Uhr</item>
-        <item>04:00 Uhr</item>
-        <item>05:00 Uhr</item>
-        <item>06:00 Uhr</item>
-        <item>07:00 Uhr</item>
-        <item>08:00 Uhr</item>
-        <item>09:00 Uhr</item>
-        <item>10:00 Uhr</item>
-        <item>11:00 Uhr</item>
-        <item>12:00 Uhr</item>
-        <item>13:00 Uhr</item>
-        <item>14:00 Uhr</item>
-        <item>15:00 Uhr</item>
-        <item>16:00 Uhr</item>
-        <item>17:00 Uhr</item>
-        <item>18:00 Uhr</item>
-        <item>19:00 Uhr</item>
-        <item>20:00 Uhr</item>
-        <item>21:00 Uhr</item>
-        <item>22:00 Uhr</item>
-        <item>23:00 Uhr</item>
+        <item>00:00 o'clock</item>
+        <item>01:00 o'clock</item>
+        <item>02:00 o'clock</item>
+        <item>03:00 o'clock</item>
+        <item>04:00 o'clock</item>
+        <item>05:00 o'clock</item>
+        <item>06:00 o'clock</item>
+        <item>07:00 o'clock</item>
+        <item>08:00 o'clock</item>
+        <item>09:00 o'clock</item>
+        <item>10:00 o'clock</item>
+        <item>11:00 o'clock</item>
+        <item>12:00 o'clock</item>
+        <item>13:00 o'clock</item>
+        <item>14:00 o'clock</item>
+        <item>15:00 o'clock</item>
+        <item>16:00 o'clock</item>
+        <item>17:00 o'clock</item>
+        <item>18:00 o'clock</item>
+        <item>19:00 o'clock</item>
+        <item>20:00 o'clock</item>
+        <item>21:00 o'clock</item>
+        <item>22:00 o'clock</item>
+        <item>23:00 o'clock</item>
     </string-array>
     <string-array name="duration_array">
-        <item>1  Stunde</item>
-        <item>2  Stunden</item>
-        <item>3  Stunden</item>
-        <item>4  Stunden</item>
-        <item>5  Stunden</item>
-        <item>6  Stunden</item>
-        <item>7  Stunden</item>
-        <item>8  Stunden</item>
-        <item>9  Stunden</item>
-        <item>10 Stunden</item>
-        <item>11 Stunden</item>
-        <item>12 Stunden</item>
+        <item>1  hour</item>
+        <item>2  hours</item>
+        <item>3  hours</item>
+        <item>4  hours</item>
+        <item>5  hours</item>
+        <item>6  hours</item>
+        <item>7  hours</item>
+        <item>8  hours</item>
+        <item>9  hours</item>
+        <item>10 hours</item>
+        <item>11 hours</item>
+        <item>12 hours</item>
     </string-array>
 </resources>

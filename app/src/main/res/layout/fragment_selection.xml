@@ -12,7 +12,7 @@
         android:layout_width="352dp"
         android:layout_height="150dp"
         android:layout_marginTop="100dp"
-        android:text="DB Übersicht"
+        android:text="Overiew Database"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -20,7 +20,7 @@
         android:layout_width="352dp"
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
-        android:text="Aktion hinzufügen"
+        android:text="Add entry"
         tools:ignore="HardcodedText" />
 
     <Button

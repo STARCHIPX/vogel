@@ -10,7 +10,7 @@
         android:id="@+id/HeaderTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Übersicht zur Buchung"
+        android:text="Overview of entry"
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingBottom="8dp"
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedPolygonsTextView"
         android:layout_marginTop="50dp"
-        android:text="Zurück"
+        android:text="Back"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selectedPolygonsTextView"
         android:layout_marginTop="50dp"
-        android:text="Speichern"
+        android:text="Save"
         android:layout_toEndOf="@id/buttonBack"
         android:layout_marginStart="70dp"
         tools:ignore="HardcodedText" />

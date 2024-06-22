@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        // Überprüfe, ob der Backstack nicht leer ist
+        // Check if the back stack is not empty
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            // Wenn ja, entferne das oberste Fragment im Backstack
+            // If yes, pop the top fragment from the back stack
             getSupportFragmentManager().popBackStack();
         } else {
-            // Wenn der Backstack leer ist, verhalte dich wie üblich
+            // If the back stack is empty, behave as usual
             super.onBackPressed();
         }
     }
