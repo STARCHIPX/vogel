@@ -13,7 +13,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="304dp"
         android:hint="Nutzername"
-        android:inputType="text" />
+        android:inputType="text"
+        tools:ignore="HardcodedText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -22,7 +24,9 @@
         android:layout_below="@id/editTextUsername"
         android:hint="Passwort"
         android:inputType="textPassword"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText"
+        android:autofillHints="key" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -30,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_below="@id/editTextPassword"
-        android:text="Login" />
+        android:text="Login"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -38,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_below="@id/buttonLogin"
-        android:text="Registrieren" />
+        android:text="Registrieren"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

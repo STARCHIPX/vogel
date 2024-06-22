@@ -13,7 +13,8 @@
         android:text="Auswahl der Aktion"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp"/>
+        android:paddingBottom="8dp"
+        tools:ignore="HardcodedText" />
 
     <DatePicker
         android:id="@+id/datePicker"
@@ -52,7 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerOptions"
         android:layout_marginTop="20dp"
-        android:text="Zurück" />
+        android:text="Zurück"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonConfirm"
@@ -62,5 +64,6 @@
         android:layout_marginTop="20dp"
         android:text="Bestätigen"
         android:layout_toEndOf="@id/buttonBack"
-        android:layout_marginStart="70dp"/>
+        android:layout_marginStart="70dp"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

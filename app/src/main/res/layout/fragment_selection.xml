@@ -12,19 +12,22 @@
         android:layout_width="352dp"
         android:layout_height="150dp"
         android:layout_marginTop="100dp"
-        android:text="DB Übersicht" />
+        android:text="DB Übersicht"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonAction"
         android:layout_width="352dp"
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
-        android:text="Aktion hinzufügen" />
+        android:text="Aktion hinzufügen"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="352dp"
         android:layout_height="150dp"
         android:layout_marginTop="90dp"
-        android:text="Logout" />
+        android:text="Logout"
+        tools:ignore="HardcodedText" />
 </LinearLayout>
