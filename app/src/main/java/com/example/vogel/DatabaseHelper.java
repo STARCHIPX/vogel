@@ -17,7 +17,7 @@ import android.database.sqlite.SQLiteConstraintException;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "selection.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // Version aktualisiert
     private static final String TABLE_SELECTIONS = "selections";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_OPTION = "option";
@@ -26,6 +26,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_POLYGONS = "polygons";
     private static final String COLUMN_TIMESTAMP = "timestamp";
     private static final String COLUMN_DURATION = "duration";
+    //private static final String COLUMN_USERNAME = "username";
+    private static final String COLUMN_AREA_NAME = "area_name"; // Neuer Spaltenname für Flächennamen
     private static final String TABLE_USERS = "users";
     private static final String COLUMN_USER_ID = "user_id";
     private static final String COLUMN_USERNAME = "username";
@@ -48,15 +50,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_SELECTIONS  + " (" +
+        String createTable = "CREATE TABLE " + TABLE_SELECTIONS + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_OPTION + " TEXT, " +
                 COLUMN_TIME_OF_DAY + " TEXT, " +
-                COLUMN_POLYGONS + " TEXT, " +
                 COLUMN_DATE + " TEXT, " +
                 COLUMN_TIMESTAMP + " TEXT, " +
                 COLUMN_DURATION + " TEXT, " +
-                COLUMN_USERNAME + " TEXT)";
+                COLUMN_USERNAME + " TEXT, " +
+                COLUMN_AREA_NAME + " TEXT)"; // Neue Spalte für Flächennamen
         db.execSQL(createTable);
 
         String createUsersTable = "CREATE TABLE " + TABLE_USERS + " (" +
@@ -77,12 +79,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param oldVersion The old database version.
      * @param newVersion The new database version.
      */
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SELECTIONS);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-            onCreate(db);
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 2) {
+            db.execSQL("ALTER TABLE " + TABLE_SELECTIONS + " ADD COLUMN " + COLUMN_AREA_NAME + " TEXT");
         }
+    }
 
     /**
      * Deletes a selection from the database.
@@ -115,20 +117,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param option The option selected.
      * @param timeOfDay The time of day selected.
      * @param date The date selected.
-     * @param polygons The polygons selected.
+     * @param areaName The name of the selected area.
      * @param duration The duration selected.
      * @param username The username of the user making the selection.
      * @return True if the insertion was successful, false otherwise.
      */
-    public boolean insertSelection(String option, String timeOfDay, String date, String polygons, String duration, String username) {
+    public boolean insertSelection(String option, String timeOfDay, String date, String areaName, String duration, String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_OPTION, option);
         contentValues.put(COLUMN_TIME_OF_DAY, timeOfDay);
         contentValues.put(COLUMN_DATE, date);
-        contentValues.put(COLUMN_POLYGONS, polygons);
         contentValues.put(COLUMN_DURATION, duration);
         contentValues.put(COLUMN_USERNAME, username);
+        contentValues.put(COLUMN_AREA_NAME, areaName);
 
         String currentDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
         contentValues.put(COLUMN_TIMESTAMP, currentDateAndTime);
@@ -138,9 +140,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-        * Inserts a new user into the database.
-            *
-            * @param username The username of the new user.
+     * Inserts a new user into the database.
+     *
+     * @param username The username of the new user.
      * @param password The password of the new user.
      * @return True if the insertion was successful, false otherwise.
      */

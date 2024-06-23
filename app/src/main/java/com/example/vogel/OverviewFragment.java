@@ -23,7 +23,6 @@ import android.content.Context;
  */
 public class OverviewFragment extends Fragment {
 
-    //private TextView databaseValuesTextView;
     private LinearLayout databaseValuesLayout;
     private SharedPreferences sharedPreferences;
 
@@ -56,6 +55,7 @@ public class OverviewFragment extends Fragment {
         // Find the button and set its OnClickListener
         Button navigateToMapButton = view.findViewById(R.id.ButtonNext);
         navigateToMapButton.setOnClickListener(v -> ((MainActivity) requireActivity()).showSelectionFragment());
+
         // Display selections from database
         displaySelections();
     }
@@ -80,7 +80,7 @@ public class OverviewFragment extends Fragment {
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             String timeOfDay = cursor.getString(cursor.getColumnIndexOrThrow("time_of_day"));
             String duration = cursor.getString(cursor.getColumnIndexOrThrow("duration"));
-            String polygons = cursor.getString(cursor.getColumnIndexOrThrow("polygons"));
+            String areaName = cursor.getString(cursor.getColumnIndexOrThrow("area_name")); // Name der Fläche
             String timestamp = cursor.getString(cursor.getColumnIndexOrThrow("timestamp"));
 
             // Create a CardView for each entry
@@ -137,12 +137,12 @@ public class OverviewFragment extends Fragment {
             durationTextView.setText(duration);
             innerLayout.addView(durationTextView);
 
-            TextView polygonsTextView = new TextView(getContext());
-            polygonsTextView.setLayoutParams(new LinearLayout.LayoutParams(
+            TextView areaNameTextView = new TextView(getContext());
+            areaNameTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            polygonsTextView.setText("Polygons: " + polygons);
-            innerLayout.addView(polygonsTextView);
+            areaNameTextView.setText("Area Name: " + areaName); // Fläche Name anzeigen
+            innerLayout.addView(areaNameTextView);
 
             // Add a delete button
             Button deleteButton = new Button(getContext());
