@@ -72,32 +72,17 @@ public class SummaryFragment extends Fragment {
             String selectedTimeOfDay = args.getString("selectedTimeOfDay");
             String selectedDate = args.getString("selectedDate");
             String selectedDuration = args.getString("selectedDuration");
+            String selectedAreaName = args.getString("selectedAreaName"); // Fläche Name empfangen
             username = args.getString("username");
-            ArrayList<GeoPoint> selectedArea = args.getParcelableArrayList("selectedArea");
-
 
             selectedOptionTextView.setText("Selected Option: " + selectedOption);
             selectedTimeOfDayTextView.setText("Selected Time of Day: " + selectedTimeOfDay);
             selectedDateTextView.setText("Selected Date: " + selectedDate);
             selectedDurationTextView.setText("Selected Duration: " + selectedDuration);
-
-            // Build the polygons string
-            StringBuilder polygonsStringBuilder = new StringBuilder();
-            if (selectedArea != null) {
-                for (GeoPoint point : selectedArea) {
-                    polygonsStringBuilder.append(point.getLatitude())
-                            .append(", ")
-                            .append(point.getLongitude())
-                            .append("\n");
-                }
-            }
-            selectedPolygonsTextView.setText(polygonsStringBuilder.toString());
+            selectedPolygonsTextView.setText("Selected Area: " + selectedAreaName); // Fläche Name anzeigen
         }
 
-        // OnClickListener for back button
         saveToDatabaseButton.setOnClickListener(v -> saveToDatabase());
-
-        // Set functionality for the back button
         buttonBack.setOnClickListener(v -> requireActivity().onBackPressed());
     }
 
@@ -109,14 +94,13 @@ public class SummaryFragment extends Fragment {
     private void saveToDatabase() {
         // Database access and write operations here
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-        String selectedOption = selectedOptionTextView.getText().toString();
-        String selectedTimeOfDay = selectedTimeOfDayTextView.getText().toString();
-        String selectedDate = selectedDateTextView.getText().toString();
-        String selectedDuration = selectedDurationTextView.getText().toString();
-        String polygonsString = selectedPolygonsTextView.getText().toString();
-        String username = this.username;
+        String selectedOption = selectedOptionTextView.getText().toString().replace("Selected Option: ", "");
+        String selectedTimeOfDay = selectedTimeOfDayTextView.getText().toString().replace("Selected Time of Day: ", "");
+        String selectedDate = selectedDateTextView.getText().toString().replace("Selected Date: ", "");
+        String selectedDuration = selectedDurationTextView.getText().toString().replace("Selected Duration: ", "");
+        String areaName = selectedPolygonsTextView.getText().toString().replace("Selected Area: ", ""); // Name der Fläche
 
-        boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay, selectedDate, polygonsString, selectedDuration, username);
+        boolean isInserted = dbHelper.insertSelection(selectedOption, selectedTimeOfDay, selectedDate, areaName, selectedDuration, username);
         if (isInserted) {
             Toast.makeText(getContext(), "Selection saved to database", Toast.LENGTH_SHORT).show();
             FragmentManager fragmentManager = getParentFragmentManager();
